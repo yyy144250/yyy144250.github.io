@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术 | 呼んだでしょう？</title>
+  <title itemprop="name">开始我的hexo博客 | 呼んだでしょう？</title>
   
     <link rel="shortcut icon" href="/images/s-icon.jpeg">
   
@@ -336,171 +336,144 @@
   </div>
 </header>
 
-      
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="/images/others/teco.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(/images/coblog/1.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/images/coblog/1.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      开始我的hexo博客</h1>
+      <p class="entry-census">
+        <span>
+          <a href="https://yyy144250.github.io">
+            <img src="/images/cover/touxiang.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="https://yyy144250.github.io">圆圆圆</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-1-3<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">何处是归程？</h1>
-    <span class="cat-des">
-      <p>どこが帰り道ですか？</p>
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为前几天某raohh给我发了他写的影评，然后我顺便看到了他的博客，然后我就很羡慕（×）。忽然发现我还没有写过博客咳咳，然后起初我想自己写一个，已经写好首页和一个很中二的开场动画了，但是忽然觉得emmm好麻烦，所以我还是用现成的吧嘿嘿。然后搭建hexo其实挺简单的，但是我还是踩了很多坑（作为一个踩坑吸引体，很想哭555，我无论配置个啥都不顺利），起初我是想把hexo部署到我荒废已久的阿里云上但是踩坑重重，现在钩子还是没有执行emm，所以先部署到我的github上了</p>
+<h2 id="需要的环境"><a href="#需要的环境" class="headerlink" title="需要的环境"></a>需要的环境</h2><p>本人本地是windows，相信很多人本地系统也是windows嘻嘻。<br>需要安装的有Git，Nodejs，windows上安装非常简单啦，直接下载后疯狂next就可以了</p>
+<h3 id="踩坑1——没有添加环境变量"><a href="#踩坑1——没有添加环境变量" class="headerlink" title="踩坑1——没有添加环境变量"></a>踩坑1——没有添加环境变量</h3><p>这样才能全局使用npm和git命令,在设置-&gt;高级系统设置-&gt;高级-&gt;环境变量-&gt;系统变量中找到Path,双击点击去，点击新建就可以了</p>
+<ul>
+<li><p>git:<br> git下载地址：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a></p>
+<p> 找到git安装目录下bin的位置（如我的是C:\Program Files\Git\bin，每个人的可能不太一样)添加到环境变量</p>
+<p> 找到git安装目录下gitscore的位置（如我的是C:\Program Files\Git\mingw64\libexec\git-core），添加到环境变量</p>
+</li>
+<li><p>nodejs:<br> Node.js 安装包及源码下载地址为：<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
+<p> 将nodejs添加到环境变量</p>
+</li>
+</ul>
+<p>安装完之后可以打开cmd窗口输入</p>
+<pre><code>node -v
+npm -v
+</code></pre><p>检查正常后就可以使用啦</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>在cmd中cd进入你想放的盘中执行以下命令</p>
+<pre><code>npm install -g hexo-cli
+hexo init blog
+cd blog
+npm install 
+</code></pre>
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2018/12/12/Hexo-Theme-Sakura/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/images/cover/life.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="/images/cover/life.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Hexo-Theme-Sakura</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/01/03/hexo/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="/images/coblog/1.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/01/03/hexo/">
-    开始我的hexo博客</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-1-3</div>
-    <p>
-    hexo博客github配置过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/01/03/hexo/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2018/12/12/Hexo-Theme-Sakura/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="/images/cover/life.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2018/12/12/Hexo-Theme-Sakura/">
-    Hexo-Theme-Sakura</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2018-12-12</div>
-    <p>
-    hexo-sakura主题使用教程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2018/12/12/Hexo-Theme-Sakura/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "5wsy7TB4XYtW2wvk1irupnSO-gzGzoHsz",
+        appKey: "I8zHzAmHOzsJbuoLQtIxQLUJ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="https://yyy144250.github.io" class="profile gravatar"><img src="/images/cover/touxiang.jpeg" itemprop="image" alt="圆圆圆" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://yyy144250.github.io" itemprop="url" rel="author">圆圆圆</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
 
-<!-- 
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2020/01/03/hexo/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="/images/coblog/1.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2020/01/03/hexo/">
-    开始我的hexo博客</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2020-1-3</div>
-    <p>
-    hexo博客github配置过程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2020/01/03/hexo/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2018/12/12/Hexo-Theme-Sakura/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="/images/cover/life.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2018/12/12/Hexo-Theme-Sakura/">
-    Hexo-Theme-Sakura</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2018-12-12</div>
-    <p>
-    hexo-sakura主题使用教程</p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2018/12/12/Hexo-Theme-Sakura/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
 
- -->
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
