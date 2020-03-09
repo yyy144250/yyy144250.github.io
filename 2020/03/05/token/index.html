@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">session,cookie,token是什么 | 呼んだでしょう？</title>
+  
+    <link rel="shortcut icon" href="/images/s-icon.jpeg">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "地獄の少女愛";
+  mashiro_option.author_name = "愛";
+  mashiro_option.site_url = "http://www.kyube.top/";
+  mashiro_option.v_appId = "5wsy7TB4XYtW2wvk1irupnSO-gzGzoHsz";
+  mashiro_option.v_appKey = "I8zHzAmHOzsJbuoLQtIxQLUJ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "/images/cover/6.jpg,/images/cover/2.jpg,/images/cover/3.jpg,/images/cover/8.jpg,/images/cover/4.jpg,/images/cover/5.jpg,/images/cover/9.jpg".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop ">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="http://www.kyube.top/">
+          <img src="/images/cover/touxiang.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>一度死んでみよう</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/yyy144250" target="_blank" class="social-github" title="github">
+                    <img src="/images/icon/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/2140619210/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo" target="_blank" class="social-github" title="sina">
+                    <img src="/images/icon/sina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/playlist?id=462529528" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="/images/icon/wangyiyun.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">地獄の少女</span>
+            <span class="shironeko">愛</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随想/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/转载/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/悦读/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/图集/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(/images/pages/cover1.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/images/pages/cover1.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      session,cookie,token是什么</h1>
+      <p class="entry-census">
+        <span>
+          <a href="http://www.kyube.top">
+            <img src="/images/cover/touxiang.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href="http://www.kyube.top">圆圆圆</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-3-5<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前虽然用到了cookie,session和token，以为理解了用法，但是当有人问起时，却又说不出来，所以决定全方位的理解一下这几个名词的含义和用法，作为自己的总结和学习，也作为分享,如有错误，希望能指出。</p>
+<h2 id="通俗的理解"><a href="#通俗的理解" class="headerlink" title="通俗的理解"></a>通俗的理解</h2><p>看到过一个和有趣的例子<br>学校里的奶茶店有喝5杯奶茶免费赠一杯奶茶的优惠，然而一次性消费5杯奶茶的机会微乎其微，这时就需要某种方式来纪录某位顾客的消费数量</p>
+<h3 id="如果协议本身支持状态"><a href="#如果协议本身支持状态" class="headerlink" title="如果协议本身支持状态"></a>如果协议本身支持状态</h3><p>该店的店员很厉害，能记住每位顾客的消费数量，只要顾客一走进奶茶店，店员就知道该怎么对待了。这种做法就是协议本身支持状态<br><strong>可惜我们的协议本身是无状态的</strong></p>
+<h3 id="Cookie的方式"><a href="#Cookie的方式" class="headerlink" title="Cookie的方式"></a>Cookie的方式</h3><p>发给顾客一张卡片，上面记录着消费的数量，一般还有个有效期限。每次消费时，如果顾客出示这张卡片，则此次消费就会与以前或以后的消费相联系起来。这种做法就是在客户端保持状态。</p>
+<h3 id="Session的方式"><a href="#Session的方式" class="headerlink" title="Session的方式"></a>Session的方式</h3><p>发给顾客一张会员卡，除了卡号之外什么信息也不纪录，每次消费时，如果顾客出示该卡片，则店员在店里的纪录本上找到这个卡号对应的纪录添加一些消费信息。这种做法就是在服务器端保持状态。</p>
+<h3 id="Token的方式"><a href="#Token的方式" class="headerlink" title="Token的方式"></a>Token的方式</h3><p>发给顾客一张会员卡，除了卡号之外什么信息也不纪录，每次消费时，顾客需要出示卡片，同时还需要输入密码，如果密码正确则可以找到记录，添加消费信息</p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><h3 id="什么是Cookie"><a href="#什么是Cookie" class="headerlink" title="什么是Cookie?"></a>什么是Cookie?</h3><p>HTTP协议本身是无状态的。什么是无状态呢，即服务器无法判断用户身份。Cookie实际上是一小段的文本信息（key-value格式）。客户端向服务器发起请求，如果服务器需要记录该用户状态，就使用response向客户端浏览器颁发一个Cookie。客户端浏览器会把Cookie保存起来。当浏览器再请求该网站时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。</p>
+<h3 id="Cookie的存储"><a href="#Cookie的存储" class="headerlink" title="Cookie的存储"></a>Cookie的存储</h3><p>以文件的方式存储在硬盘空间上的长期性的cookie:比如登录时填写的一些信息会被以文件的方式放在客户端的硬盘上。</p>
+<h3 id="Cookie发送过程"><a href="#Cookie发送过程" class="headerlink" title="Cookie发送过程"></a>Cookie发送过程</h3><ul>
+<li>客户端发送request给服务端</li>
+<li>服务端发现是第一次登陆的用户，返回response携带set-cookie给客户端</li>
+<li>客户端保存cookie，在下次请求时携带cookie</li>
+<li>服务端验证cookie，确认身份，返回response</li>
+</ul>
+<h3 id="Cookie的弊端"><a href="#Cookie的弊端" class="headerlink" title="Cookie的弊端"></a>Cookie的弊端</h3><p>cookie 中的所有数据在客户端就可以被修改，数据非常容易被伪造，那么一些重要的数据就不能存放在 cookie 中了，而且如果 cookie中数据字段太多会影响传输效率。为了解决这些问题，就产生了 session，session 中的数据是保留在服务器端的</p>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><h3 id="什么是Session"><a href="#什么是Session" class="headerlink" title="什么是Session"></a>什么是Session</h3><p>session是一种服务器端的信息管理机制，它把这些文件信息以文件的形势存放在服务器的硬盘空间上。本质上session和cookie没有什么区别，只不过session存放在服务端，cookie存放在服务端<br>不同的Web框架下Session的实现机制都是不一样的。但是原理都是大同小异的，这里普遍应用的机制是通过Cookie来存储一个会话的票据（也就是 SessionID）</p>
+<h3 id="Session的发送过程"><a href="#Session的发送过程" class="headerlink" title="Session的发送过程"></a>Session的发送过程</h3><p>Session存储在Cookie中，所以发送过程大致和cookie相同</p>
+<ul>
+<li>浏览器第一次访问服务器会在服务器端生成一个session，有一个sessionid和它对应，类似于键值对key：value</li>
+<li>在Session被创建之后，就可以调用Session相关的方法往Session中增加内容了，而这些内容只会保存在服务器中，比如redis 或 memcached 等缓存中</li>
+<li>发送给客户端Session id；当客户端再次发送请求的时候，会将这个Session id带上，服务器接受到请求之后就会依据Session id找到相应的Session，从而再次使用之。</li>
+</ul>
+<h3 id="Session的安全性"><a href="#Session的安全性" class="headerlink" title="Session的安全性"></a>Session的安全性</h3><p>Session生成规则是根据hash_func散列来生成的，相关的参数有： </p>
+<ul>
+<li>客户端IP </li>
+<li>当前时间（秒） </li>
+<li>当前时间（微妙） </li>
+<li>PHP自带的随机数生产器<br>从生成规则来看，如果想要破解sessionid是几乎不可能的。所以session是很安全的</li>
+</ul>
+<h3 id="Session的发送过程-1"><a href="#Session的发送过程-1" class="headerlink" title="Session的发送过程"></a>Session的发送过程</h3><ul>
+<li>客户端第一次发送request给服务端，服务端为其开辟session存储空间</li>
+<li>服务端返回response携带set-cookie，sessionid存在返回的cookie中</li>
+<li>客户端保存cookie，下次请求时携带存有session_id的cookie发送request</li>
+<li>服务端验证cookie中的session_id并对session进行一系列操作。并返回response</li>
+</ul>
+<h2 id="cookie，session-id的发送过程注意事项"><a href="#cookie，session-id的发送过程注意事项" class="headerlink" title="cookie，session_id的发送过程注意事项"></a>cookie，session_id的发送过程注意事项</h2><p>首先cookie信息是由浏览器自动为我们发送的，但是由于同源策略的限制，当我们的前后端不在同一域名下时，会导致cookie无法发送，所以需要我们配置允许跨域。常见的方法有使用cors，添加withCredentials = true。允许浏览器发送非同源请求时携带cookie，如vue中</p>
+<pre><code>var instance =axios.create({
+    withCredentials:true
+    })
+</code></pre><h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><h3 id="什么是token"><a href="#什么是token" class="headerlink" title="什么是token"></a>什么是token</h3><p>token是计算机术语：令牌，令牌是一种能够控制站点占有媒体的特殊帧，以区别数据帧及其他控制帧。token其实说的更通俗点可以叫暗号，在一些数据传输之前，要先进行暗号的核对，不同的暗号被授权不同的数据操作。<br>说白了本质上也是用于身份验证的东西，那么为什么有了session，还又出现了token？自然是因为session不好，token好</p>
+<h3 id="token的好处"><a href="#token的好处" class="headerlink" title="token的好处"></a>token的好处</h3><ul>
+<li>Token可以是无状态的，可以在多个服务器见共享</li>
+<li>Token支持手机端访问</li>
+<li>Token完全是应用管理，所以它可以避开同源策略，cookie是不允许跨域访问，token则不存在</li>
+<li>Token可以避免CSRF攻击</li>
+</ul>
+<h4 id="token的无状态"><a href="#token的无状态" class="headerlink" title="token的无状态"></a>token的无状态</h4><p>当使用session时，大家都只需要把自己的sessionid存在客户端，可是服务端却要存每一个人的sessionid，如果人多了，就要存不知道多少个，同时，如果我现在要用两个机器组成一个集群，我在A上面登陆了，sessionid保存在上面，下一次我的请求被送到了B上，怎么验证？当让，万能的大佬们支招说可以，可以把sessionid集中储存在同一个地方，让所有机器都访问这个地方的数据，这样就解决了，但是负责sessionid的这个机器挂了的话，不就完蛋了？</p>
+<p>所以既然存session有很多的麻烦，我们就不保存sessionid了，那我们怎么验证身份并保证身份正确呢。有一个方法，我们对他这个用户名进行一个签名，学名叫信息摘要算法。，比如用一个SHA算法，用一个只有我自己知道的密钥，进行加密。然后我们不保存这个token，我们等客户端把数据发送过来后，把他的用户名进行同样的加密，如果和他传过来的token值相同，则说明这个用户名没被更改过。</p>
+<ul>
+<li>比如有一个字段user=yyy，我们将这个值和我们服务端的一个秘密字符串secret_string进行hash，比如sha1(user=yyy+secret_string)= ‘4850a42e3bc0d39c978770392cbd8dc2923e3d1d’</li>
+<li>发送的时候同时发送user=yyy以及user_sign=’4850a42e3bc0d39c978770392cbd8dc2923e3d1d’，当客户端接收到时，用同样的算法对着一个字符串进行相同的加密，如果结果和user_sign相同，则说明数据没有被篡改，而加密所需的秘密字符串只有我们客户端才知道，别人是无法伪造出来user_sign的。</li>
+</ul>
+<p>从token的整个过程我们可以看出我们发送的token信息不需要在服务端存储什么验证信息，只需要存储一个秘密字符串和加密算法，这大大减轻了服务端的压力，这样服务端就有余力做更多其他的事情。</p>
+<h4 id="token可以防止CSRF攻击"><a href="#token可以防止CSRF攻击" class="headerlink" title="token可以防止CSRF攻击"></a>token可以防止CSRF攻击</h4><h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h3 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h3><p>CSRF攻击的全称是跨站请求伪造（ cross site request forgery)，是一种对网站的恶意利用。简单点讲就是，恶意网站(攻击者)盗用了你的身份，以你的名义向信任网站发送恶意请求。 CRSF能做的事情包括利用你的身份发邮件、发短信、进行交易转账等，甚至盗取你的账号</p>
+<h3 id="CSRF过程"><a href="#CSRF过程" class="headerlink" title="CSRF过程"></a>CSRF过程</h3><p>CSRF攻击过程大体上为</p>
+<ul>
+<li>受害者登陆a.com,并保留了登陆凭证cookie</li>
+<li>攻击者引诱受害者访问者访问b.com，如邮件</li>
+<li>b.com向a.com的js中会发送了一个请求a.com/act=xx让受害者去访问a.com,浏览器会默认带上a.com的cookie</li>
+<li>a.com收到请求后验证了cookie，确实是受害者的cookie误认为是受害者发送的cookie</li>
+<li>a.com以受害者的名义执行了act=xx</li>
+<li>攻击完成，攻击者虽然没有获取cookie的内容，但是使用了受害者的cookie</li>
+</ul>
+<p>以银行网站为例<strong>（原例子博客<a href="https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html）" target="_blank" rel="noopener">https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html）</a></strong></p>
+<h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><p>银行网站A，它以GET请求来完成银行转账的操作，如：<a href="http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000" target="_blank" rel="noopener">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</a></p>
+<p>危险网站B，它里面有一段HTML的代码如下：</p>
+<pre><code>&lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;
+</code></pre><p>这样当用户访问B网站时，便会自动携带A网站的cookie执行A网站的转钱操作，并且整个过程身份验证的都是他自己</p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>银行网站这一次不用GET了，改使用POST了</p>
+<pre><code>&lt;form action=&quot;Transfer.php&quot; method=&quot;POST&quot;&gt;
+&lt;p&gt;ToBankId: &lt;input type=&quot;text&quot; name=&quot;toBankId&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Money: &lt;input type=&quot;text&quot; name=&quot;money&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Transfer&quot; /&gt;&lt;/p&gt;
+&lt;/form&gt;
+</code></pre><p>这个时候,恶意网站B与时俱进</p>
+<pre><code>&lt;html&gt;
+　　&lt;head&gt;
+　　　　&lt;script type=&quot;text/javascript&quot;&gt;
+　　　　　　function steal()
+　　　　　　{
+          　　　　 iframe = document.frames[&quot;steal&quot;];
+　　     　　      iframe.document.Submit(&quot;transfer&quot;);
+　　　　　　}
+　　　　&lt;/script&gt;
+　　&lt;/head&gt;
+
+　　&lt;body onload=&quot;steal()&quot;&gt;
+　　　　&lt;iframe name=&quot;steal&quot; display=&quot;none&quot;&gt;
+　　　　　　&lt;form method=&quot;POST&quot; name=&quot;transfer&quot;　action=&quot;http://www.myBank.com/Transfer.php&quot;&gt;
+　　　　　　　　&lt;input type=&quot;hidden&quot; name=&quot;toBankId&quot; value=&quot;11&quot;&gt;
+　　　　　　　　&lt;input type=&quot;hidden&quot; name=&quot;money&quot; value=&quot;1000&quot;&gt;
+　　　　　　&lt;/form&gt;
+　　　　&lt;/iframe&gt;
+　　&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>你的钱还是会被恶意网站转走，并且同样验证的时候还是你的身份</p>
+<p><strong>所以为什么Token可以防止cors攻击呢</strong></p>
+<h3 id="TOken与CORS"><a href="#TOken与CORS" class="headerlink" title="TOken与CORS"></a>TOken与CORS</h3><p>一般情况下我们收到服务端的token之后是会把token存在local storage或者cookie中，前面的session_id存储再cookie中导致cookie一旦被盗用，那么cookie中的session_id也会同样的被盗用进行了身份验证，那么token存储再cookie中时为什么不会被盗用呢？<br><strong>这是因为，在信任网站的js中，会向服务器传递参数token，不是通过Cookie传递的，若恶意网站要伪造用户的请求，也必须伪造这个token，否则用户身份验证不通过。但是，同源策略限制了恶意网站不能拿到信任网站的Cookie内容，只能使用，所以就算是token是存放在Cookie中的，恶意网站也无法提取出Cookie中的token数据进行伪造。也就无法传递正确的token给服务器，进而无法成功伪装成用户了。</strong><br><strong>即我们的token是存放在cookie中，但是我们的cookie进行检验时，并不是使用的cookie中的token，cookie中的token只是用来存储的，它能够使用我们的cookie，却无法知道我们cookie里面的值，无法取出里面的token进行验证，cookie又不会直接用里面的token验证，自然就不会被CSRF了</strong></p>
+<h3 id="token的使用过程"><a href="#token的使用过程" class="headerlink" title="token的使用过程"></a>token的使用过程</h3><ul>
+<li>服务端签发的下来的token，将其存储到cookie或者localstorage中<pre><code>localStorage.setItem(&#39;token&#39;, data.data.token);
+</code></pre></li>
+<li><p>每次发送请求都携带本地的token去发送</p>
+<pre><code>config =&gt; {        
+    if (localStorage.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token             
+        config.headers[&#39;authorization&#39;] = &#39;authorization&#39; + localStorage.token;        
+    }        
+    return config    
+},
+
+</code></pre></li>
+<li><p>Token过期</p>
+<pre><code>If(data.code==2){
+   window.location.href=“login.html”
+}
+</code></pre></li>
+<li>Token的发送方式有很多，此为放到请求的header中,除此之外还有遍历dom树为每个a标签添加token等方式</li>
+</ul>
+<h4 id="refresh-token和acess-token"><a href="#refresh-token和acess-token" class="headerlink" title="refresh_token和acess_token"></a>refresh_token和acess_token</h4><p>用于验证的token有效时间应该尽可能短，但是有效时间过短则需要用户去进行不断地登陆，而token允许我们一些附加属性，当采用有效的方式请求访问令牌时，授权服务器则会返回一个授权令牌（access token）和一个可选的刷新令牌(refresh token),同时返回给客户端还有其他一些附加属性，比如用户姓名，编号等</p>
+<ul>
+<li>访问令牌 access_token (必需)</li>
+<li>令牌类型 token_type (必须)</li>
+<li>超时时间 expires_in (推荐)</li>
+<li>刷新令牌 refresh_token （可选）</li>
+<li>作用域 scope（可选）</li>
+</ul>
+<p>相应的过程大致为</p>
+<ul>
+<li>客户端向服务端发送请求，服务端返回refresh token和accesstoken</li>
+<li>客户端再次发送请求时携带access token进行验证身份</li>
+<li>如果服务端发现acesstoken已经过期，则返回消息说过期了，而refreshtoken没有过期，则自动刷新acesstoken</li>
+<li>如果refreshtoken也过期了，则返回登陆页面，让他重新登陆</li>
+</ul>
+<p>这样当acess泄露时，由于有效期限很短，所以可以在一定程度上较小造成的不良后果。</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="/images/donate/alipay.jpg"></li>
+                <li class="wechat-code"><img src="/images/donate/wechat.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2020/01/03/hexo/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/images/coblog/1.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="/images/coblog/1.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                开始我的hexo博客</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "5wsy7TB4XYtW2wvk1irupnSO-gzGzoHsz",
+        appKey: "I8zHzAmHOzsJbuoLQtIxQLUJ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="http://www.kyube.top" class="profile gravatar"><img src="/images/cover/touxiang.jpeg" itemprop="image" alt="圆圆圆" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="http://www.kyube.top" itemprop="url" rel="author">圆圆圆</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 圆圆圆<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Copyright&copy <a href="https://github.com/yyy144250.github.io" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">yyy</a>|Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i>,Powered by <a href="https://hexo.io" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">,Hexo,</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://kyube.oss-cn-beijing.aliyuncs.com/kyube/vedio/clannad.mp4?Expires=1583395392&OSSAccessKeyId=TMP.hhTmBYXcF2U4KhPEPZhyiTk3Wieo5YHsoYYzVk3iuQJKHZkVwTuY8XtHM84SuNzkmvfUGFGLNQEHWYF2tvCN1CG36BZ3mraDbLz6HXowhKCaqGWycoYy5vwt7TVdgC.tmp&Signature=pWh%2B6xgjPWJohWB3QTmBHNdXDec%3D","name":"clannad.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://kyube.oss-cn-beijing.aliyuncs.com/kyube/vedio/clannad.mp4?Expires=1583395392&OSSAccessKeyId=TMP.hhTmBYXcF2U4KhPEPZhyiTk3Wieo5YHsoYYzVk3iuQJKHZkVwTuY8XtHM84SuNzkmvfUGFGLNQEHWYF2tvCN1CG36BZ3mraDbLz6HXowhKCaqGWycoYy5vwt7TVdgC.tmp&Signature=pWh%2B6xgjPWJohWB3QTmBHNdXDec%3D","name":"clannad.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="/images/cover/touxiang.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">地獄の少女愛</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/honjun" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/mashirozx?is_all=1" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="https://music.163.com/#/playlist?id=462529528" class="fa fa-pinterest" target="_blank" style="color: #red; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/转载/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/悦读/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/图集/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="462529528"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>
